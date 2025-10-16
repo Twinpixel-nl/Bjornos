@@ -1,0 +1,39 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const title = `${post.data.title} — BJORNOS`;
+const description = post.data.description;
+---
+
+<Layout {title} {description}>
+  <article class="section">
+    <div class="container-px">
+      <header class="mb-6" data-reveal>
+        <time datetime={post.data.date.toISOString()} class="text-xs text-white/60">
+          {post.data.date.toLocaleDateString("nl-NL", { day: "2-digit", month: "long", year: "numeric" })}
+        </time>
+        <h1 class="mt-2 font-display text-3xl md:text-4xl text-white">{post.data.title}</h1>
+        {description ? <p class="mt-2 text-white/75 max-w-prose">{description}</p> : null}
+      </header>
+
+      <div class="prose prose-invert prose-headings:font-display prose-a:text-accent max-w-none" data-reveal data-delay="0.05">
+        <Content />
+      </div>
+
+      <div class="mt-10">
+        <a href="/blog" class="btn btn-ghost">← Terug naar blog</a>
+      </div>
+    </div>
+  </article>
+</Layout>

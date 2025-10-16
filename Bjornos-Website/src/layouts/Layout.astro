@@ -1,0 +1,51 @@
+---
+import "../styles/globals.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import SEO from "../components/SEO.astro";
+import { analytics as analyticsCfg } from "../config/site";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = "BJORNOS — Drum & Bass DJ",
+  description = "Ik breng energie en flow naar elke set. Professionele drum & bass DJ voor clubs en festivals.",
+  ogImage = "/og.svg"
+} = Astro.props as Props;
+---
+
+<html lang="nl" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <SEO {title} {description} {ogImage} />
+
+    {/*
+      Plausible Analytics:
+      Stel je domein in via src/config/site.ts (analytics.plausibleDomain).
+      Laat leeg om te deactiveren.
+    */}
+    {analyticsCfg.plausibleDomain ? (
+      <script defer data-domain={analyticsCfg.plausibleDomain} src="https://plausible.io/js/script.js"></script>
+    ) : null}
+
+    <!-- Favicon (optioneel, plaats je icoon in /public) -->
+    <link rel="icon" href="/favicon.svg" />
+  </head>
+  <body>
+    <Navbar />
+
+    <main id="main" class="container-px">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <!-- Motion One: lichte fade-in/scroll animaties -->
+    <script type="module" src="/src/scripts/reveal.ts"></script>
+  </body>
+</html>

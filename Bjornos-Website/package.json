@@ -1,0 +1,32 @@
+{
+  "name": "bjornos-website",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Moderne artiestenwebsite in Astro + TypeScript + Tailwind voor DJ Bjornos (drum & bass).",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "format": "prettier --write ."
+  },
+  "engines": {
+    "node": ">=18.14.1"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^3.1.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "@motionone/dom": "^10.16.4",
+    "astro": "^4.14.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "prettier": "^3.3.3",
+    "tailwindcss": "^3.4.10",
+    "@tailwindcss/typography": "^0.5.13",
+    "typescript": "^5.6.2"
+  }
+}

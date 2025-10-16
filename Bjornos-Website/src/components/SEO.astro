@@ -1,0 +1,45 @@
+---
+/**
+ * SEO component
+ * Props:
+ * - title: Pagina titel
+ * - description: Korte omschrijving (160 chars)
+ * - ogImage: Absolute of root-relative URL naar social share image
+ *
+ * Gebruik: <SEO title="..." description="..." ogImage="/og.svg" />
+ */
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = "BJORNOS — Drum & Bass DJ",
+  description = "Ik breng energie en flow naar elke set. Professionele drum & bass DJ voor clubs en festivals.",
+  ogImage = "/og.svg"
+} = Astro.props as Props;
+
+const url = Astro.site ? new URL(Astro.request.url, Astro.site).toString() : Astro.request.url;
+const imageUrl = ogImage.startsWith("http") ? ogImage : new URL(ogImage, Astro.site ?? "http://localhost:4321").toString();
+---
+<title set:html={title} />
+<meta name="description" content={description} />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="BJORNOS" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:alt" content="BJORNOS — Drum & Bass DJ" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<!-- Theme color -->
+<meta name="theme-color" content="#0a0a0a" />

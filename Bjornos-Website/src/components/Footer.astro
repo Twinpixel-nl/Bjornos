@@ -1,0 +1,26 @@
+---
+import SocialIcons from "./SocialIcons.astro";
+import { site } from "../config/site";
+
+const year = site.year ?? new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t border-white/10">
+  <div class="container-px section grid gap-8 md:grid-cols-2">
+    <div class="space-y-3" data-reveal>
+      <h2 class="font-display text-xl text-white">BJORNOS</h2>
+      <p class="max-w-prose text-white/70">
+        Drum & bass DJ — energiek, doordacht en met focus op flow. Boekingen voor clubs, festivals en events.
+      </p>
+      <a href="/contact" class="btn btn-primary inline-flex">Book Me</a>
+    </div>
+
+    <div class="flex flex-col items-start gap-4 md:items-end" data-reveal data-delay="0.1">
+      <SocialIcons class="justify-start md:justify-end" />
+      <div class="hr"></div>
+      <p class="text-sm text-white/60">
+        © {year} Bjornos | Website by TwinPixel
+      </p>
+    </div>
+  </div>
+</footer>

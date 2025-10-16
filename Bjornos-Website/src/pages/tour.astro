@@ -1,0 +1,91 @@
+---
+import Layout from "../layouts/Layout.astro";
+import tour from "../data/tour.json";
+
+type Event = {
+  date: string;
+  city?: string;
+  venue?: string;
+  title?: string;
+  tickets?: string;
+};
+
+const events = (tour as Event[]).slice().sort(
+  (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+);
+
+const now = new Date();
+const upcoming = events.filter((e) => new Date(e.date) >= now);
+const past = events.filter((e) => new Date(e.date) < now).reverse();
+
+const fmt = (d: string) =>
+  new Date(d).toLocaleDateString("nl-NL", { day: "2-digit", month: "long", year: "numeric" });
+---
+
+<Layout title="Tour / Events — BJORNOS" description="Dynamische lijst van optredens en events.">
+  <section class="section">
+    <div class="container-px">
+      <h1 class="text-white" data-reveal>Tour / Events</h1>
+      <p class="mt-3 max-w-prose text-white/80" data-reveal data-delay="0.05">
+        Hieronder vind je de geplande shows en recente optredens. Data en locaties worden regelmatig geüpdatet.
+      </p>
+
+      <div class="mt-8 grid gap-10 md:grid-cols-2">
+        <div>
+          <h2 class="text-white" data-reveal>Aankomend</h2>
+          <div class="mt-4 space-y-4">
+            {upcoming.length === 0 ? (
+              <p class="text-white/60" data-reveal>Nieuwe shows worden binnenkort aangekondigd.</p>
+            ) : (
+              upcoming.map((e) => (
+                <article class="surface p-5" data-reveal>
+                  <div class="flex items-center justify-between gap-3">
+                    <time datetime={e.date} class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-xs text-white/80 ring-1 ring-white/10">
+                      <span class="inline-block h-2 w-2 rounded-full bg-accent"></span>
+                      {fmt(e.date)}
+                    </time>
+                    {e.city ? <span class="text-xs text-white/60">{e.city}</span> : null}
+                  </div>
+                  <h3 class="mt-3 font-display text-lg text-white">
+                    {e.venue ?? "TBA"}
+                  </h3>
+                  {e.title ? <p class="mt-1 text-white/70">{e.title}</p> : null}
+                  <div class="mt-4 flex gap-3">
+                    {e.tickets && (
+                      <a href={e.tickets} target="_blank" rel="noopener" class="btn btn-primary">Tickets</a>
+                    )}
+                  </div>
+                </article>
+              ))
+            )}
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-white" data-reveal>Geweest</h2>
+          <div class="mt-4 space-y-4">
+            {past.length === 0 ? (
+              <p class="text-white/60" data-reveal>Er zijn nog geen voorgaande shows.</p>
+            ) : (
+              past.map((e) => (
+                <article class="surface p-5" data-reveal>
+                  <div class="flex items-center justify-between gap-3">
+                    <time datetime={e.date} class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-xs text-white/80 ring-1 ring-white/10">
+                      <span class="inline-block h-2 w-2 rounded-full bg-white/50"></span>
+                      {fmt(e.date)}
+                    </time>
+                    {e.city ? <span class="text-xs text-white/60">{e.city}</span> : null}
+                  </div>
+                  <h3 class="mt-3 font-display text-lg text-white">
+                    {e.venue ?? "TBA"}
+                  </h3>
+                  {e.title ? <p class="mt-1 text-white/70">{e.title}</p> : null}
+                </article>
+              ))
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

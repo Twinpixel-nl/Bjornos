@@ -1,0 +1,94 @@
+/* Google Fonts (import first for Vite) */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles (we disabled Tailwind's base reset via astro.config) */
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-background text-foreground antialiased;
+  background-image:
+    radial-gradient(40rem 40rem at 70% -10%, rgba(255, 94, 0, 0.06), transparent 60%),
+    radial-gradient(30rem 30rem at -10% 20%, rgba(255, 94, 0, 0.05), transparent 60%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02), transparent);
+  background-attachment: fixed;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  @apply font-display tracking-tight;
+}
+
+h1 { @apply text-4xl md:text-6xl leading-[1.05]; }
+h2 { @apply text-3xl md:text-4xl leading-snug; }
+h3 { @apply text-2xl md:text-3xl; }
+
+p { @apply text-base md:text-lg leading-relaxed text-white/80; }
+
+a {
+  @apply text-foreground/90 transition-colors;
+}
+a:hover {
+  color: #FF5E00;
+}
+
+/* Utility containers and sections */
+.container-px {
+  @apply container px-4 md:px-8;
+}
+.section {
+  @apply py-16 md:py-24;
+}
+
+/* Buttons */
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60;
+}
+.btn-primary {
+  @apply bg-accent text-black px-6 py-3 shadow-glow hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0;
+}
+.btn-ghost {
+  @apply text-foreground/80 border border-white/10 px-6 py-3 hover:border-white/25 hover:bg-white/5;
+}
+
+/* Cards and surfaces */
+.surface {
+  @apply rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm;
+}
+
+/* Subtle divider */
+.hr {
+  @apply h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent;
+}
+
+/* Accessibility helpers */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden; clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap; border: 0; padding: 0; margin: -1px;
+}
+
+/* Animations (CSS fallback if JS disabled) */
+.fade-in {
+  @apply animate-fade-in;
+}
+.fade-up {
+  @apply animate-fade-up;
+}
+
+/* Notes for content editing (Dutch):
+   - SoundCloud URL: later in src/pages/music.astro (zoek naar SOUND_CLOUD_URL)
+   - Spotify embed: optioneel in src/pages/music.astro (zoek naar SPOTIFY_EMBED_SRC)
+   - Tour data: bewerk src/data/tour.json
+   - Blogposts: plaats MDX-bestanden in src/content/blog
+*/

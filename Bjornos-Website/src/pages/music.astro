@@ -1,0 +1,65 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { embeds } from "../config/site";
+
+/**
+ * Bewerkbare content:
+ * - SoundCloud: src/config/site.ts → embeds.soundcloudTrackUrl (SOUND_CLOUD_URL)
+ * - Spotify (optioneel): src/config/site.ts → embeds.spotifyEmbedSrc (SPOTIFY_EMBED_SRC)
+ */
+const scUrl = embeds.soundcloudTrackUrl;
+const spotifyEmbed = embeds.spotifyEmbedSrc;
+const scPlayerSrc = `https://w.soundcloud.com/player/?url=${encodeURIComponent(scUrl)}&color=%23ff5e00&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true`;
+---
+
+<Layout title="Music / Sets — BJORNOS" description="Luister mijn laatste drum & bass mixen en sets.">
+  <section class="section">
+    <div class="container-px grid gap-10 md:grid-cols-12">
+      <div class="md:col-span-7" data-reveal>
+        <h1 class="text-white">Music / Sets</h1>
+        <p class="mt-4 max-w-prose">
+          Verse selectie van mixen en live-opnames. Energie, dynamiek en flow — van liquid rollers tot neuro-randjes.
+        </p>
+
+        <!-- SoundCloud embed -->
+        <div class="mt-6 overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-lg" aria-label="SoundCloud player">
+          <iframe
+            width="100%"
+            height="360"
+            allow="autoplay"
+            src={scPlayerSrc}
+          ></iframe>
+        </div>
+
+        <p class="mt-3 text-sm text-white/60">
+          Tip: wil je een specifieke set embedden? Pas de URL aan in <code class="text-white/80">src/config/site.ts</code>.
+        </p>
+      </div>
+
+      <!-- Spotify (optioneel) -->
+      <div class="md:col-span-5" data-reveal data-delay="0.1">
+        <div class="surface p-6">
+          <h2 class="font-display text-white">Ook op Spotify</h2>
+          <p class="mt-2 text-white/80">
+            Soms vind je curated playlists of releases op Spotify. Check hieronder:
+          </p>
+          {spotifyEmbed ? (
+            <div class="mt-4 overflow-hidden rounded-xl ring-1 ring-white/10">
+              <iframe
+                src={spotifyEmbed}
+                width="100%"
+                height="352"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+              ></iframe>
+            </div>
+          ) : (
+            <p class="mt-4 text-sm text-white/60">
+              Spotify embed is uitgeschakeld. Voeg een <em>embed</em>-URL toe in <code class="text-white/80">src/config/site.ts</code> om te activeren.
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

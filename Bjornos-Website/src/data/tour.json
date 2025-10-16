@@ -1,0 +1,30 @@
+[
+  {
+    "date": "2025-11-15",
+    "city": "Amsterdam, NL",
+    "venue": "Melkweg (Oude Zaal)",
+    "title": "DnB Night — High Energy",
+    "tickets": "https://tickets.example.com/amsterdam-2025-11-15"
+  },
+  {
+    "date": "2025-12-05",
+    "city": "Rotterdam, NL",
+    "venue": "Bird",
+    "title": "Deep Rollers Session",
+    "tickets": "https://tickets.example.com/rotterdam-2025-12-05"
+  },
+  {
+    "date": "2026-01-10",
+    "city": "Utrecht, NL",
+    "venue": "TivoliVredenburg",
+    "title": "Winter Bass",
+    "tickets": "https://tickets.example.com/utrecht-2026-01-10"
+  },
+  {
+    "date": "2026-02-08",
+    "city": "Eindhoven, NL",
+    "venue": "Effenaar",
+    "title": "Liquid & Neuro Night",
+    "tickets": "https://tickets.example.com/eindhoven-2026-02-08"
+  }
+]
