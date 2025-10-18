@@ -15,12 +15,21 @@ const year = site.year ?? new Date().getFullYear();
       <a href="/contact" class="btn btn-primary inline-flex">Book Me</a>
     </div>
 
-    <div class="flex flex-col items-start gap-4 md:items-end" data-reveal data-delay="0.1">
-      <SocialIcons class="justify-start md:justify-end" />
-      <div class="hr"></div>
-      <p class="text-sm text-white/60">
-        © {year} Bjornos | Website by TwinPixel
-      </p>
-    </div>
+   <div class="flex flex-col items-start gap-4 md:items-end" data-reveal data-delay="0.1">
+  <SocialIcons class="justify-start md:justify-end" />
+  <div class="hr"></div>
+  <p class="text-sm text-white/60">
+    © {year} Bjornos | Website by 
+    <a 
+      href="https://twinpixel.nl" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="text-white/80 hover:text-accent transition-colors"
+    >
+      TwinPixel
+    </a>
+  </p>
+</div>
+
   </div>
 </footer>

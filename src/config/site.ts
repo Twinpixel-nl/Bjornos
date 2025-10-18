@@ -3,9 +3,9 @@
  * Pas deze waarden aan om de website te personaliseren zonder in componenten te zoeken.
  */
 export const site = {
-  title: "BJORNOS — Drum & Bass DJ",
+  title: "BJORNOS — EDM DJ",
   description:
-    "Ik breng energie en flow naar elke set. Professionele drum & bass DJ voor clubs en festivals.",
+    "Ik breng energie en flow naar elke set. Professionele EDM DJ voor clubs en festivals.",
   domain: "bjornos.example",
   author: "Bjornos",
   year: 2025
@@ -17,13 +17,13 @@ export const navLinks: { href: string; label: string }[] = [
   { href: "/music", label: "Music" },
   { href: "/tour", label: "Tour" },
   { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Book Me" }
+
 ];
 
 export const socials = {
   // Vul je echte profielen in:
-  instagram: "https://instagram.com/bjornos",
-  soundcloud: "https://soundcloud.com/bjornos",
+  instagram: "https://www.instagram.com/bjorn.van.wijk/",
+  soundcloud: "https://soundcloud.com/osjorns",
   spotify: "https://open.spotify.com/artist/000000000000000", // vervang met echte artist/playlist URL
   tiktok: "https://www.tiktok.com/@bjornos"
 };
@@ -40,7 +40,7 @@ export const embeds = {
    * Voorbeeld: https://soundcloud.com/user-123456789/bjornos-liveset-vol-01
    */
   soundcloudTrackUrl:
-    "https://soundcloud.com/user-123456789/bjornos-energized-vol-01", // <— bewerkbaar
+    "https://soundcloud.com/osjorns/drum-bass-mix-2025-dimension-sub-focus-wilkonson-1999-losbjornos", // <— bewerkbaar
 
   /**
    * SPOTIFY_EMBED_SRC:

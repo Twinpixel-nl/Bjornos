@@ -15,11 +15,15 @@ import SocialIcons from "./SocialIcons.astro";
     <div class="absolute -top-24 right-1/3 h-[28rem] w-[28rem] rounded-full bg-accent/10 blur-[100px] animate-soft-pulse"></div>
     <div class="absolute -bottom-24 -left-24 h-[30rem] w-[30rem] rounded-full bg-accent/10 blur-[120px]"></div>
     <svg class="absolute -bottom-10 left-0 h-48 w-[140%] opacity-[0.12]" viewBox="0 0 1200 120" preserveAspectRatio="none" focusable="false">
-      <path d="M0,0V46.29c47.64,22,103.74,29,158,17C274.34,36.56,348.54-6.59,426.18,1.45,518,10.88,566,69.24,657.85,78.67c88.54,9.11,169.93-39.07,252.2-64.66C1046-11.54,1140.7,3.29,1200,31.53V0Z" fill="currentColor"></path>
+      <path
+        d="M0,0V46.29c47.64,22,103.74,29,158,17C274.34,36.56,348.54-6.59,426.18,1.45,518,10.88,566,69.24,657.85,78.67c88.54,9.11,169.93-39.07,252.2-64.66C1046-11.54,1140.7,3.29,1200,31.53V0Z"
+        fill="currentColor"
+      ></path>
     </svg>
   </div>
 
   <div class="container-px grid items-center gap-8 md:grid-cols-12">
+    <!-- Tekstblok -->
     <div class="md:col-span-7" data-reveal>
       <h1 class="font-display text-[clamp(2.5rem,7vw,5rem)] leading-[1.02] text-white">
         BJORNOS
@@ -40,8 +44,18 @@ import SocialIcons from "./SocialIcons.astro";
 
     <!-- Visual block -->
     <div class="relative md:col-span-5" data-reveal data-delay="0.1" aria-hidden="true">
-      <div class="surface relative mx-auto aspect-square w-64 md:w-80">
+      <div class="surface relative mx-auto aspect-square w-64 md:w-80 overflow-hidden">
+        <!-- Foto van Bjornos -->
+        <img
+          src="/images/bjornos.jpg"
+          alt="Bjornos performing live"
+          class="w-full h-full object-cover rounded-2xl"
+        />
+
+        <!-- Overlay-glow -->
         <div class="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 to-transparent"></div>
+
+        <!-- Status-label -->
         <div class="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-full bg-black/50 px-3 py-1 text-xs text-white/80 ring-1 ring-white/10 backdrop-blur">
           <span class="inline-block h-2 w-2 animate-pulse rounded-full bg-accent"></span>
           Live-ready
