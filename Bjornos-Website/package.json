@@ -1,5 +1,22 @@
 {
+  "name": "bjornos-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "astro": "^4.14.0",
+    "@astrojs/mdx": "^3.1.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "@motionone/dom": "^10.16.4"
+  },
   "devDependencies": {
-    "@astrojs/ts-plugin": "^1.10.5"
+    "tailwindcss": "^3.4.10",
+    "typescript": "^5.6.2"
   }
 }
