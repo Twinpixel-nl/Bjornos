@@ -4,22 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Admin</title>
-    <!-- (optioneel) CSS van Decap zodat je geen FOUC ziet -->
     <link rel="stylesheet" href="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.css" />
   </head>
   <body>
-    <!-- Decap CMS app -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
-    <!-- Netlify Identity (nodig voor Git Gateway login UI) -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
-      // Na login terug naar /admin
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", (user) => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => document.location.href = "/admin/");
-          }
+          if (!user) window.netlifyIdentity.on("login", () => document.location.href = "/admin/");
         });
       }
     </script>
