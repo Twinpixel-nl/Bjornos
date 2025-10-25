@@ -4,12 +4,13 @@ import { embeds } from "../config/site";
 
 /**
  * Bewerkbare content:
- * - SoundCloud: src/config/site.ts → embeds.soundcloudTrackUrl (SOUND_CLOUD_URL)
- * - Spotify (optioneel): src/config/site.ts → embeds.spotifyEmbedSrc (SPOTIFY_EMBED_SRC)
+ * - SoundCloud: src/config/site.ts → embeds.soundcloudTrackUrl
+ * - Spotify (optioneel): src/config/site.ts → embeds.spotifyEmbedSrc
  */
 const scUrl = embeds.soundcloudTrackUrl;
 const spotifyEmbed = embeds.spotifyEmbedSrc;
-const scPlayerSrc = `https://w.soundcloud.com/player/?url=${encodeURIComponent(scUrl)}&color=%23ff5e00&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true`;
+const scPlayerSrc =
+  `https://w.soundcloud.com/player/?url=${encodeURIComponent(scUrl)}&color=%23ff5e00&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true`;
 ---
 
 <Layout title="Music / Sets — BJORNOS" description="Luister mijn laatste House mixen en sets.">
@@ -30,8 +31,6 @@ const scPlayerSrc = `https://w.soundcloud.com/player/?url=${encodeURIComponent(s
             src={scPlayerSrc}
           ></iframe>
         </div>
-
-      
       </div>
 
       <!-- Spotify (optioneel) -->
@@ -41,7 +40,8 @@ const scPlayerSrc = `https://w.soundcloud.com/player/?url=${encodeURIComponent(s
           <p class="mt-2 text-white/80">
             Soms vind je curated playlists of releases op Spotify. Check hieronder:
           </p>
-          {spotifyEmbed ? (
+
+          {spotifyEmbed && (
             <div class="mt-4 overflow-hidden rounded-xl ring-1 ring-white/10">
               <iframe
                 src={spotifyEmbed}
@@ -51,8 +51,6 @@ const scPlayerSrc = `https://w.soundcloud.com/player/?url=${encodeURIComponent(s
                 loading="lazy"
               ></iframe>
             </div>
-          ) : (
-           
           )}
         </div>
       </div>
