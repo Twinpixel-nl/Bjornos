@@ -15,7 +15,7 @@ export const navLinks: { href: string; label: string }[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/music", label: "Music" },
-  { href: "/tour", label: "Tour" },
+  // { href: "/tour", label: "Tour" },
   { href: "/blog", label: "Blog" },
 
 ];
