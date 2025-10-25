@@ -5,6 +5,7 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# --- Sitemap & robots ---
 [[redirects]]
   from = "/robots.txt"
   to = "/robots.txt"
@@ -23,6 +24,28 @@
   status = 200
   force = true
 
+# --- Decap CMS (Netlify CMS) admin fix ---
+# Laat config.yml en index.html direct serveren (geen SPA fallback)
+[[redirects]]
+  from = "/admin/config.yml"
+  to = "/admin/config.yml"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/admin/index.html"
+  to = "/admin/index.html"
+  status = 200
+  force = true
+
+# (optioneel) laat eventuele JS/CSS assets door
+[[redirects]]
+  from = "/admin/*.(js|css|map)"
+  to = "/admin/:splat"
+  status = 200
+  force = true
+
+# De rest van /admin -> index.html (SPA-fallback)
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
