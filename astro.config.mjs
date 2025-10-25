@@ -4,8 +4,8 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://bjornos.nl", // gebruikt voor canonical en sitemap URLs
-  output: "static",           // nodig voor Netlify (geen SSR)
+  site: "https://bjornos.nl",        // gebruikt voor canonical- en sitemap-URLs
+  output: "static",                  // nodig voor Netlify (geen SSR)
   trailingSlash: "never",
 
   integrations: [
@@ -14,7 +14,10 @@ export default defineConfig({
 
     // Automatisch sitemap.xml genereren
     sitemap({
-      exclude: ["/contact/success"], // optioneel
+      // filter vervangt 'exclude' in nieuwe versies
+      filter: (page) => page.pathname !== "/contact/success",
+      // optioneel: pas aan als je meer dan 45k pagina's hebt
+      entryLimit: 45000,
     }),
   ],
 
