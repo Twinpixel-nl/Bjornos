@@ -4,38 +4,37 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import SEO from "../components/SEO.astro";
 import { analytics as analyticsCfg } from "../config/site";
-
-export interface Props {
-  title?: string;
-  description?: string;
-  ogImage?: string;
-}
-
-const {
-  title = "BJORNOS — House DJ",
-  description = "Ik breng energie en flow naar elke set. Professionele House DJ voor clubs en festivals.",
-  ogImage = "/og.svg"
-} = Astro.props as Props;
 ---
 
 <html lang="nl" class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <SEO {title} {description} {ogImage} />
 
-    {/*
-      Plausible Analytics:
-      Stel je domein in via src/config/site.ts (analytics.plausibleDomain).
-      Laat leeg om te deactiveren.
-    */}
-    {analyticsCfg.plausibleDomain ? (
-      <script defer data-domain={analyticsCfg.plausibleDomain} src="https://plausible.io/js/script.js"></script>
-    ) : null}
+    <!-- SEO: standaardwaarden + overschrijfbare props -->
+    <SEO
+      title={Astro.props.title ?? "BJORNOS — House DJ"}
+      description={Astro.props.description ?? "Ik breng energie en flow naar elke set. Professionele House DJ voor clubs en festivals."}
+      ogImage={Astro.props.ogImage ?? "/og.svg"}
+    />
 
-    <!-- Favicon (optioneel, plaats je icoon in /public) -->
+    <!-- Google Analytics 4 -->
+    {analyticsCfg.gaMeasurementId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsCfg.gaMeasurementId}`}></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){{dataLayer.push(arguments);}}
+          gtag('js', new Date());
+          gtag('config', '{analyticsCfg.gaMeasurementId}', {{ anonymize_ip: true }});
+        </script>
+      </>
+    )}
+
+    <!-- Favicon -->
     <link rel="icon" href="/favicon.svg" />
   </head>
+
   <body>
     <Navbar />
 
@@ -45,7 +44,7 @@ const {
 
     <Footer />
 
-    <!-- Motion One: lichte fade-in/scroll animaties -->
+    <!-- Scroll animaties -->
     <script type="module" src="/src/scripts/reveal.ts"></script>
   </body>
 </html>

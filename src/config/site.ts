@@ -53,5 +53,6 @@ export const embeds = {
 };
 
 export const analytics = {
-  plausibleDomain: "bjornos.nl" // Zet dit naar je echte domein of laat leeg om uit te schakelen
+  gaMeasurementId: "G-8426GSK95T" // vervang dit door jouw echte GA4 ID
 };
+
