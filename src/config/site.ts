@@ -3,10 +3,10 @@
  * Pas deze waarden aan om de website te personaliseren zonder in componenten te zoeken.
  */
 export const site = {
-  title: "BJORNOS — EDM DJ",
+  title: "BJORNOS — House DJ",
   description:
-    "Ik breng energie en flow naar elke set. Professionele EDM DJ voor clubs en festivals.",
-  domain: "bjornos.example",
+    "Ik breng energie en flow naar elke set. Professionele House DJ voor clubs en festivals.",
+  domain: "bjornos.nl",
   author: "Bjornos",
   year: 2025
 };
@@ -29,7 +29,7 @@ export const socials = {
 };
 
 export const contact = {
-  email: "bookings@bjornos.com" // Aanpassen naar jouw bookings/contact e-mail
+  email: "bjornvanwijk1@gmail.com" // Aanpassen naar jouw bookings/contact e-mail
 };
 
 export const embeds = {
@@ -53,5 +53,5 @@ export const embeds = {
 };
 
 export const analytics = {
-  plausibleDomain: "bjornos.example" // Zet dit naar je echte domein of laat leeg om uit te schakelen
+  plausibleDomain: "bjornos.nl" // Zet dit naar je echte domein of laat leeg om uit te schakelen
 };

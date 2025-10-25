@@ -15,8 +15,8 @@ export interface Props {
 }
 
 const {
-  title = "BJORNOS — Drum & Bass DJ",
-  description = "Ik breng energie en flow naar elke set. Professionele drum & bass DJ voor clubs en festivals.",
+  title = "BJORNOS — House DJ",
+  description = "Ik breng energie en flow naar elke set. Professionele House DJ voor clubs en festivals.",
   ogImage = "/og.svg"
 } = Astro.props as Props;
 
@@ -33,7 +33,7 @@ const imageUrl = ogImage.startsWith("http") ? ogImage : new URL(ogImage, Astro.s
 <meta property="og:description" content={description} />
 <meta property="og:url" content={url} />
 <meta property="og:image" content={imageUrl} />
-<meta property="og:image:alt" content="BJORNOS — Drum & Bass DJ" />
+<meta property="og:image:alt" content="BJORNOS — House DJ" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
