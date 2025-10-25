@@ -49,7 +49,7 @@ export const embeds = {
    * https://open.spotify.com/embed/playlist/37i9dQZF1DX48TTZL62Yht?utm_source=generator&theme=0
    */
   spotifyEmbedSrc:
-    "https://open.spotify.com/embed/playlist/37i9dQZF1DX48TTZL62Yht?utm_source=generator&theme=0" // <— bewerkbaar
+    "https://open.spotify.com/embed/playlist/49CdfN106d7t5EbnKlhGtF?utm_source=generator&theme=0" // <— bewerkbaar
 };
 
 export const analytics = {
