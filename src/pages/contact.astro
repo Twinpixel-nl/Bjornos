@@ -23,57 +23,63 @@ import SocialIcons from "../components/SocialIcons.astro";
         </p>
 
         <!-- Netlify Forms -->
-        <form
-          name="contact"
-          method="POST"
-          action="/contact/success"
-          netlify
-          netlify-honeypot="bot-field"
-          class="mt-6 space-y-4"
-        >
-          <!-- Netlify hidden helpers -->
-          <input type="hidden" name="form-name" value="contact" />
-          <p class="visually-hidden">
-            <label>Laat dit veld leeg: <input name="bot-field" /></label>
-          </p>
+       <form
+  name="contact"
+  method="POST"
+  action="/contact/success"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class="mt-6 space-y-4"
+>
+  <!-- Netlify hidden helpers -->
+  <input type="hidden" name="form-name" value="contact" />
+  <p class="visually-hidden">
+    <label>Laat dit veld leeg: <input name="bot-field" /></label>
+  </p>
 
-          <div class="grid gap-4 md:grid-cols-2">
-            <div class="flex flex-col gap-2">
-              <label for="name" class="text-sm text-white/80">Naam</label>
-              <input
-                id="name" name="name" type="text" required
-                class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/40 outline-none focus:ring-2 focus:ring-accent/60"
-                placeholder="Jouw naam"
-              />
-            </div>
-            <div class="flex flex-col gap-2">
-              <label for="email" class="text-sm text-white/80">E‑mail</label>
-              <input
-                id="email" name="email" type="email" required
-                class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/40 outline-none focus:ring-2 focus:ring-accent/60"
-                placeholder="naam@voorbeeld.com"
-              />
-            </div>
-          </div>
+  <div class="grid gap-4 md:grid-cols-2">
+    <div class="flex flex-col gap-2">
+      <label for="name" class="text-sm text-white/80">Naam</label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        required
+        class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/40 outline-none focus:ring-2 focus:ring-accent/60"
+        placeholder="Jouw naam"
+      />
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="email" class="text-sm text-white/80">E-mail</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        required
+        class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/40 outline-none focus:ring-2 focus:ring-accent/60"
+        placeholder="naam@voorbeeld.com"
+      />
+    </div>
+  </div>
 
-          <div class="flex flex-col gap-2">
-            <label for="message" class="text-sm text-white/80">Bericht</label>
-            <textarea
-              id="message" name="message" rows="6" required
-              class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/40 outline-none focus:ring-2 focus:ring-accent/60"
-              placeholder="Vertel kort iets over je event, locatie en datum."
-            ></textarea>
-          </div>
+  <div class="flex flex-col gap-2">
+    <label for="message" class="text-sm text-white/80">Bericht</label>
+    <textarea
+      id="message"
+      name="message"
+      rows="6"
+      required
+      class="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/40 outline-none focus:ring-2 focus:ring-accent/60"
+      placeholder="Vertel kort iets over je event, locatie en datum."
+    ></textarea>
+  </div>
 
-          <div class="pt-2">
-            <button type="submit" class="btn btn-primary">Verstuur</button>
-          </div>
-        </form>
+  <div class="pt-2">
+    <button type="submit" class="btn btn-primary">Verstuur</button>
+  </div>
+</form>
 
-        <p class="mt-4 text-sm text-white/60">
-          Tip: Wil je Formspark gebruiken? Vervang de form action door jouw Formspark endpoint en verwijder de Netlify hidden inputs.
-        </p>
-      </div>
+
 
       <aside class="md:col-span-5" data-reveal data-delay="0.1">
         <div class="surface p-6">

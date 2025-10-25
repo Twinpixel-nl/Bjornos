@@ -1,14 +1,33 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import SEO from "../components/SEO.astro";
 ---
 
-<Layout title="About — BJORNOS" description="Energiek, doordacht en gevarieerd. Drum & bass met focus op flow en strak mixwerk.">
+<Layout>
+  <SEO
+    title="Over mij — BJORNOS | House DJ in Utrecht"
+    description="Over BJORNOS: Utrechtse house DJ met focus op energie, flow en strak mixwerk. Maatwerk sets voor clubs, festivals en events."
+    ogImage="/og-about.jpg"
+  />
+
+  {/* Breadcrumbs JSON-LD (optioneel, maar netjes) */}
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: new URL("/", Astro.site ?? Astro.request.url).toString() },
+        { "@type": "ListItem", position: 2, name: "Over mij", item: new URL("/about", Astro.site ?? Astro.request.url).toString() }
+      ]
+    })}
+  </script>
+
   <section class="section">
     <div class="container-px grid gap-10 md:grid-cols-12">
       <div class="md:col-span-7" data-reveal>
-        <h1 class="text-white">About</h1>
+        <h1 class="text-white">Over mij</h1>
         <p class="mt-4 max-w-prose">
-          Ik ben BJORNOS — drum & bass DJ met een sterke focus op energie, flow en beleving. Mijn sets zijn
+          Ik ben BJORNOS — House DJ met een sterke focus op energie, flow en beleving. Mijn sets zijn
           doordacht opgebouwd: van diepe rollers tot explosieve bangers, met strakke overgangen en verrassende
           wendingen die het publiek meenemen van begin tot einde.
         </p>
@@ -32,7 +51,7 @@ import Layout from "../layouts/Layout.astro";
           </ul>
           <div class="hr my-6"></div>
           <p class="text-sm text-white/60">
-            Beschikbaar voor clubs, festivals en events. Voor boekingen: ga naar de contactpagina.
+            Beschikbaar voor clubs, festivals en events in heel Nederland, gevestigd in Utrecht.
           </p>
         </div>
       </div>
