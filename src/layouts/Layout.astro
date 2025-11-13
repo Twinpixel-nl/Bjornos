@@ -45,6 +45,8 @@ import { analytics as analyticsCfg } from "../config/site";
     <Footer />
 
     <!-- Animaties of andere scripts -->
-    <script type="module" src={Astro.resolve("../scripts/reveal.ts")}></script>
+<script type="module">
+  import "../scripts/reveal.ts";
+</script>
   </body>
 </html>
