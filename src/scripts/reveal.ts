@@ -10,6 +10,7 @@ function reveal(el: HTMLElement) {
   // Initial state (also backed by Tailwind's CSS animations as fallback)
   el.style.opacity = "0";
   el.style.transform = "translateY(12px)";
+console.log("Reveal script is actief");
 
   inView(
     el,
