@@ -4,6 +4,9 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import SEO from "../components/SEO.astro";
 import { analytics as analyticsCfg } from "../config/site";
+
+// ⬇️ HIER: TS-script als bundel-URL importeren
+import revealScript from "../scripts/reveal.ts?url";
 ---
 
 <html lang="nl" class="dark">
@@ -45,8 +48,6 @@ import { analytics as analyticsCfg } from "../config/site";
     <Footer />
 
     <!-- Animaties of andere scripts -->
-<script type="module">
-  import "../scripts/reveal.ts";
-</script>
+    <script type="module" src={revealScript}></script>
   </body>
 </html>
