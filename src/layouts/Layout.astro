@@ -5,8 +5,8 @@ import Footer from "../components/Footer.astro";
 import SEO from "../components/SEO.astro";
 import { analytics as analyticsCfg } from "../config/site";
 
-// ⬇️ HIER: TS-script als bundel-URL importeren
-import revealScript from "../scripts/reveal.ts?url";
+// Entry voor animaties (TS → JS bundel)
+import revealEntry from "../scripts/reveal.entry.ts?url";
 ---
 
 <html lang="nl" class="dark">
@@ -25,6 +25,7 @@ import revealScript from "../scripts/reveal.ts?url";
     {analyticsCfg.gaMeasurementId && (
       <>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsCfg.gaMeasurementId}`}></script>
+
         <script is:inline define:vars={{ gaId: analyticsCfg.gaMeasurementId }}>
           window.dataLayer = window.dataLayer || [];
           function gtag(){ dataLayer.push(arguments); }
@@ -47,7 +48,7 @@ import revealScript from "../scripts/reveal.ts?url";
 
     <Footer />
 
-    <!-- Animaties of andere scripts -->
-    <script type="module" src={revealScript}></script>
+    <!-- Reveal animations (TS → JS bundel) -->
+    <script type="module" src={revealEntry}></script>
   </body>
 </html>
