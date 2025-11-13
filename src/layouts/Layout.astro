@@ -11,7 +11,7 @@ import { analytics as analyticsCfg } from "../config/site";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- SEO: standaardwaarden + overschrijfbare props -->
+    <!-- SEO -->
     <SEO
       title={Astro.props.title ?? "BJORNOS — House DJ"}
       description={Astro.props.description ?? "Ik breng energie en flow naar elke set. Professionele House DJ voor clubs en festivals."}
@@ -22,11 +22,11 @@ import { analytics as analyticsCfg } from "../config/site";
     {analyticsCfg.gaMeasurementId && (
       <>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsCfg.gaMeasurementId}`}></script>
-        <script>
+        <script is:inline define:vars={{ gaId: analyticsCfg.gaMeasurementId }}>
           window.dataLayer = window.dataLayer || [];
-          function gtag(){{dataLayer.push(arguments);}}
+          function gtag(){ dataLayer.push(arguments); }
           gtag('js', new Date());
-          gtag('config', '{analyticsCfg.gaMeasurementId}', {{ anonymize_ip: true }});
+          gtag('config', gaId, { send_page_view: true });
         </script>
       </>
     )}
@@ -44,7 +44,7 @@ import { analytics as analyticsCfg } from "../config/site";
 
     <Footer />
 
-    <!-- Scroll animaties -->
+    <!-- Animaties of andere scripts -->
     <script type="module" src="/src/scripts/reveal.ts"></script>
   </body>
 </html>

@@ -25,7 +25,7 @@ export const socials = {
   instagram: "https://www.instagram.com/bjorn.van.wijk/",
   soundcloud: "https://soundcloud.com/osjorns",
   spotify: "https://open.spotify.com/user/bjornvankrantenwijk?si=07b117bf95e04065", // vervang met echte artist/playlist URL
-  tiktok: "https://www.tiktok.com/@bjornos"
+  tiktok: "https://www.tiktok.com/"
 };
 
 export const contact = {
