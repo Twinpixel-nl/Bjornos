@@ -93,15 +93,3 @@ a:hover {
    - Blogposts: plaats MDX-bestanden in src/content/blog
 */
 
-.sc-wrapper {
-  background: #0b0b0b; /* je page background */
-  padding: 16px;
-  border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.6);
-}
-
-/* iframe zelf strak houden */
-.sc-wrapper iframe {
-  display: block;
-  border-radius: 12px;
-}
