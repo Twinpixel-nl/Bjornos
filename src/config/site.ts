@@ -40,7 +40,7 @@ export const embeds = {
    * Voorbeeld: https://soundcloud.com/user-123456789/bjornos-liveset-vol-01
    */
   soundcloudTrackUrl:
-    "https://on.soundcloud.com/nbPUIA4RBSD0qNOEm5", // <— bewerkbaar
+    "https://soundcloud.com/bjornos-933013928/bjornos-hardhouse-mix-pegassi-lammer-odymel-benwal?si=5c802a76f922412f9665a651598afd05&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing#t=33%3A50", // <— bewerkbaar
 
   /**
    * SPOTIFY_EMBED_SRC:
