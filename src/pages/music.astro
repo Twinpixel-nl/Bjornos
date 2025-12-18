@@ -7,31 +7,38 @@ const scStart = embeds.soundcloudStartTime;
 const spotifyEmbed = embeds.spotifyEmbedSrc;
 
 const scPlayerSrc =
-  `https://w.soundcloud.com/player/?url=${encodeURIComponent(scUrl)}&start_time=${scStart}&color=%23ff5e00&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true`;
+  `https://w.soundcloud.com/player/?url=${encodeURIComponent(scUrl)}&color=%23ff5e00&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true`;
 ---
 
-
-<Layout title="Music / Sets — BJORNOS" description="Luister mijn laatste House mixen en sets.">
+<Layout
+  title="Music / Sets — BJORNOS"
+  description="Luister mijn laatste House mixen en sets."
+>
   <section class="section">
     <div class="container-px grid gap-10 md:grid-cols-12">
+      <!-- LEFT: SoundCloud -->
       <div class="md:col-span-7" data-reveal>
         <h1 class="text-white">Music / Sets</h1>
         <p class="mt-4 max-w-prose">
-          Verse selectie van mixjes en live-opnames. Energie, dynamiek en flow. van EDM tot Hardhouse.
+          Verse selectie van mixjes en live-opnames. Energie, dynamiek en flow — van EDM tot Hardhouse.
         </p>
 
-        <!-- SoundCloud embed -->
-        <div class="mt-6 overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-lg" aria-label="SoundCloud player">
+        <div
+          class="mt-6 overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-lg"
+          aria-label="SoundCloud player"
+        >
           <iframe
+            id="sc-player"
             width="100%"
             height="360"
             allow="autoplay"
+            loading="lazy"
             src={scPlayerSrc}
           ></iframe>
         </div>
       </div>
 
-      <!-- Spotify (optioneel) -->
+      <!-- RIGHT: Spotify -->
       <div class="md:col-span-5" data-reveal data-delay="0.1">
         <div class="surface p-6">
           <h2 class="font-display text-white">Ook op Spotify</h2>
@@ -54,4 +61,28 @@ const scPlayerSrc =
       </div>
     </div>
   </section>
+
+  <!-- SoundCloud Widget API -->
+  <script src="https://w.soundcloud.com/player/api.js"></script>
+
+  <script define:vars={{ scStart }}>
+    document.addEventListener("DOMContentLoaded", () => {
+      const iframe = document.getElementById("sc-player");
+      if (!iframe || !window.SC) return;
+
+      const widget = window.SC.Widget(iframe);
+      let hasSeeked = false;
+
+      widget.bind(window.SC.Widget.Events.READY, () => {
+        // alvast proberen
+        widget.seekTo(scStart);
+      });
+
+      widget.bind(window.SC.Widget.Events.PLAY, () => {
+        if (hasSeeked) return;
+        hasSeeked = true;
+        widget.seekTo(scStart);
+      });
+    });
+  </script>
 </Layout>
