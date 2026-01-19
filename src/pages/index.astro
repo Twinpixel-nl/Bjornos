@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import SEO from "../components/SEO.astro";
 import Hero from "../components/Hero.astro";
 import tour from "../data/tour.json";
 
@@ -10,43 +9,47 @@ const upcoming = (tour as any[])
   .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
   .slice(0, 3);
 
-const fmt = (d: string) =>
-  new Date(d).toLocaleDateString("nl-NL", { day: "2-digit", month: "long", year: "numeric" });
-
 // JSON-LD voor events (alleen als er shows zijn)
-const eventsLd = upcoming.map((e) => ({
-  "@context": "https://schema.org",
-  "@type": "MusicEvent",
-  name: e.title ?? `BJORNOS @ ${e.venue ?? "tba"}`,
-  startDate: e.date, // ISO 8601 in je JSON aanhouden
-  eventStatus: "https://schema.org/EventScheduled",
-  performer: { "@type": "MusicGroup", name: "BJORNOS" },
-  location: {
-    "@type": "Place",
-    name: e.venue ?? "tba",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: e.city ?? "Utrecht",
-      addressCountry: "NL"
-    }
-  },
-  offers: e.tickets ? [{
-    "@type": "Offer",
-    url: e.tickets,
-    availability: "https://schema.org/InStock"
-  }] : undefined
-}));
+const eventsLd = upcoming.map((e) => {
+  const offers = e.tickets
+    ? [
+        {
+          "@type": "Offer",
+          url: e.tickets,
+          availability: "https://schema.org/InStock"
+        }
+      ]
+    : undefined;
+
+  // optioneel: undefined velden weglaten is netter
+  return {
+    "@context": "https://schema.org",
+    "@type": "MusicEvent",
+    name: e.title ?? `BJORNOS @ ${e.venue ?? "tba"}`,
+    startDate: e.date, // ISO 8601
+    eventStatus: "https://schema.org/EventScheduled",
+    performer: { "@type": "MusicGroup", name: "BJORNOS" },
+    location: {
+      "@type": "Place",
+      name: e.venue ?? "tba",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: e.city ?? "Utrecht",
+        addressCountry: "NL"
+      }
+    },
+    ...(offers ? { offers } : {})
+  };
+});
 ---
 
-<Layout>
-  <SEO
-    title="BJORNOS — House DJ in Utrecht"
-    description="Utrechtse House DJ. Energie, flow en strak mixwerk voor clubs, festivals en events. Boek BJORNOS."
-    ogImage="/og-home.jpg"
-  />
-
+<Layout
+  title="BJORNOS — House DJ in Utrecht"
+  description="Utrechtse House DJ. Energie, flow en strak mixwerk voor clubs, festivals en events. Boek BJORNOS."
+  ogImage="/og-home.jpg"
+>
   {upcoming.length > 0 && (
-    <script type="application/ld+json">{JSON.stringify(eventsLd)}</script>
+    <script type="application/ld+json" set:html={JSON.stringify(eventsLd)} />
   )}
 
   <Hero />
@@ -75,7 +78,6 @@ const eventsLd = upcoming.map((e) => ({
       </div>
     </div>
   </section>
-
 
   <!-- Blog teaser -->
   <section class="section">
