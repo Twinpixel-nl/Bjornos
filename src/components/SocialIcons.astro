@@ -53,17 +53,22 @@ const { class: className = "", size = 22 } = Astro.props as Props;
       width={size}
       height={size}
       viewBox="0 0 24 24"
-      fill="currentColor"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
       aria-hidden="true"
     >
-      <path d="M16.6 10.2a4.6 4.6 0 0 0-9-.9A3.5 3.5 0 0 0 8 16h8a3 3 0 0 0 .6-5.8z"/>
-      <rect x="9" y="10.2" width="1.6" height="4.8" rx=".8"/>
-      <rect x="11.7" y="9.2" width="1.6" height="5.8" rx=".8"/>
-      <rect x="14.4" y="10.2" width="1.6" height="4.8" rx=".8"/>
+      <!-- cloud -->
+      <path d="M7.5 17h9a3 3 0 0 0 .3-6 4.5 4.5 0 0 0-8.6-1.4A3.2 3.2 0 0 0 7.5 17z" />
+      <!-- wave -->
+      <path d="M9 13.5v-3" />
+      <path d="M11.5 14v-4.5" />
+      <path d="M14 13.5v-3" />
     </svg>
   </a>
 )}
-
 
   {socials.spotify && (
     <a href={socials.spotify} target="_blank" rel="noopener noreferrer" aria-label="Spotify" class="text-white/70 hover:text-accent transition-colors">
