@@ -41,6 +41,34 @@ const { class: className = "", size = 22 } = Astro.props as Props;
     </svg>
   </a>
 )}
+{socials.mixcloud && (
+  <a
+    href={socials.mixcloud}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Mixcloud"
+    class="text-white/70 hover:text-accent transition-colors"
+  >
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <!-- cloud -->
+      <path d="M7.5 17h9a3 3 0 0 0 .3-6 4.5 4.5 0 0 0-8.6-1.4A3.2 3.2 0 0 0 7.5 17z" />
+      <!-- wave -->
+      <path d="M9 13.5v-3" />
+      <path d="M11.5 14v-4.5" />
+      <path d="M14 13.5v-3" />
+    </svg>
+  </a>
+)}
 
   {socials.spotify && (
     <a href={socials.spotify} target="_blank" rel="noopener noreferrer" aria-label="Spotify" class="text-white/70 hover:text-accent transition-colors">
