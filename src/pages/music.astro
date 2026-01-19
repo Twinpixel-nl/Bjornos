@@ -5,10 +5,10 @@ import { embeds } from "../config/site";
 const scUrl = embeds.soundcloudTrackUrl;
 const scStart = embeds.soundcloudStartTime;
 const spotifyEmbed = embeds.spotifyEmbedSrc;
+const mixcloudEmbed = embeds.mixcloudEmbedSrc;
 
 const scPlayerSrc =
   `https://w.soundcloud.com/player/?url=${encodeURIComponent(scUrl)}&start_time=${scStart}&auto_play=false&visual=true`;
-
 ---
 
 <Layout
@@ -17,25 +17,37 @@ const scPlayerSrc =
 >
   <section class="section">
     <div class="container-px grid gap-10 md:grid-cols-12">
-      <!-- LEFT: SoundCloud -->
+      <!-- LEFT: SoundCloud + Mixcloud -->
       <div class="md:col-span-7" data-reveal>
         <h1 class="text-white">Music / Sets</h1>
         <p class="mt-4 max-w-prose">
           Verse selectie van mixjes en live-opnames. Energie, dynamiek en flow - van EDM tot Hardhouse.
         </p>
 
-        <div
-          class="mt-6 overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-lg"
-          aria-label="SoundCloud player"
-        >
-  <iframe
-    id="sc-player"
-    width="100%"
-    height="360"
-    allow="autoplay"
-    src={scPlayerSrc}
-  ></iframe>
+        <div class="mt-6 overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-lg" aria-label="SoundCloud player">
+          <iframe
+            id="sc-player"
+            width="100%"
+            height="360"
+            allow="autoplay"
+            src={scPlayerSrc}
+          ></iframe>
         </div>
+
+        {mixcloudEmbed && (
+          <>
+            <h3 class="mt-10 text-white text-lg">Meer sets op Mixcloud</h3>
+            <div class="mt-4 overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-lg" aria-label="Mixcloud player">
+              <iframe
+                src={mixcloudEmbed}
+                width="100%"
+                height="120"
+                allow="encrypted-media; fullscreen; autoplay"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </>
+        )}
       </div>
 
       <!-- RIGHT: Spotify -->
@@ -60,48 +72,44 @@ const scPlayerSrc =
         </div>
       </div>
     </div>
-  </section>
 
-   <!-- SoundCloud Widget API -->
-  <script define:vars={{ scStart }}>
-    function initSoundCloudSeek() {
-      const iframe = document.getElementById("sc-player");
-      if (!iframe) return;
+    <!-- SoundCloud Widget API -->
+    <script define:vars={{ scStart }}>
+      function initSoundCloudSeek() {
+        const iframe = document.getElementById("sc-player");
+        if (!iframe) return;
 
-      // Wacht tot SC beschikbaar is
-      if (!window.SC || !window.SC.Widget) {
-        setTimeout(initSoundCloudSeek, 100);
-        return;
+        if (!window.SC || !window.SC.Widget) {
+          setTimeout(initSoundCloudSeek, 100);
+          return;
+        }
+
+        const widget = window.SC.Widget(iframe);
+
+        const forceSeek = () => {
+          widget.seekTo(scStart);
+          setTimeout(() => widget.seekTo(scStart), 300);
+          setTimeout(() => widget.seekTo(scStart), 800);
+        };
+
+        widget.bind(window.SC.Widget.Events.READY, () => {
+          forceSeek();
+        });
+
+        let hasSeekedOnPlay = false;
+        widget.bind(window.SC.Widget.Events.PLAY, () => {
+          if (hasSeekedOnPlay) return;
+          hasSeekedOnPlay = true;
+          forceSeek();
+        });
       }
 
-      const widget = window.SC.Widget(iframe);
+      window.initSoundCloudSeek = initSoundCloudSeek;
+    </script>
 
-      const forceSeek = () => {
-        widget.seekTo(scStart);
-        // extra “duwtje” voor de visual player (soms negeert hij de eerste)
-        setTimeout(() => widget.seekTo(scStart), 300);
-        setTimeout(() => widget.seekTo(scStart), 800);
-      };
-
-      widget.bind(window.SC.Widget.Events.READY, () => {
-        forceSeek();
-      });
-
-      // als READY te vroeg is, spring bij eerste play ook nog
-      let hasSeekedOnPlay = false;
-      widget.bind(window.SC.Widget.Events.PLAY, () => {
-        if (hasSeekedOnPlay) return;
-        hasSeekedOnPlay = true;
-        forceSeek();
-      });
-    }
-
-    // beschikbaar maken voor onload
-    window.initSoundCloudSeek = initSoundCloudSeek;
-  </script>
-
-  <script
-    src="https://w.soundcloud.com/player/api.js"
-    onload="window.initSoundCloudSeek && window.initSoundCloudSeek()"
-  ></script>
+    <script
+      src="https://w.soundcloud.com/player/api.js"
+      onload="window.initSoundCloudSeek && window.initSoundCloudSeek()"
+    ></script>
+  </section>
 </Layout>

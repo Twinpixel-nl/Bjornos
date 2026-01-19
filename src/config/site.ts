@@ -23,9 +23,10 @@ export const navLinks: { href: string; label: string }[] = [
 export const socials = {
   // Vul je echte profielen in:
   instagram: "https://www.instagram.com/bjorn.van.wijk/",
-  soundcloud: "https://soundcloud.com/osjorns",
+  soundcloud: "https://soundcloud.com/bjornos-933013928",
   spotify: "https://open.spotify.com/user/bjornvankrantenwijk?si=07b117bf95e04065", // vervang met echte artist/playlist URL
-  tiktok: "https://www.tiktok.com/"
+  tiktok: "https://www.tiktok.com/djbjornos",
+  mixcloud: "https://www.mixcloud.com/Bjornos/"
 };
 
 export const contact = {
@@ -51,9 +52,11 @@ export const embeds = {
    * https://open.spotify.com/embed/playlist/37i9dQZF1DX48TTZL62Yht?utm_source=generator&theme=0
    */
   spotifyEmbedSrc:
-    "https://open.spotify.com/embed/playlist/1poeapOfDehRZlPwyl0T8q?si=dUO7la7zSMuEjXCdDgVmQA&pi=ohHxkpG3Ri2ep?utm_source=generator&theme=0" // <— bewerkbaar
-};
+    "https://open.spotify.com/embed/playlist/1poeapOfDehRZlPwyl0T8q?si=dUO7la7zSMuEjXCdDgVmQA&pi=ohHxkpG3Ri2ep?utm_source=generator&theme=0", // <— bewerkbaar
 
+ mixcloudEmbedSrc:
+    "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2FBjornos%2Fdrum-bass-mix-dimension-sub-focus-wilkonson-1999%2F"
+};
 export const analytics = {
   gaMeasurementId: "G-8426GSK95T" // vervang dit door jouw echte GA4 ID
 };
