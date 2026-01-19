@@ -3,7 +3,7 @@
  * Pas deze waarden aan om de website te personaliseren zonder in componenten te zoeken.
  */
 export const site = {
-  title: "BJORNOS — House DJ",
+  title: "BJORNOS - House DJ",
   description:
     "Ik breng energie en flow naar elke set. Professionele House DJ voor clubs en festivals.",
   domain: "bjornos.nl",
