@@ -20,9 +20,47 @@ const {
 
 const site = Astro.site ?? new URL(Astro.request.url).origin;
 const url = new URL(Astro.request.url, site).toString();
-const imageUrl = ogImage.startsWith("http") ? ogImage : new URL(ogImage, site).toString();
+const imageUrl = ogImage.startsWith("http")
+  ? ogImage
+  : new URL(ogImage, site).toString();
+
+/**
+ * JSON-LD schema
+ * Altijd als object + JSON.stringify + set:html
+ * om parse errors te voorkomen
+ */
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "BJORNOS",
+  jobTitle: "House DJ",
+  description,
+  image: imageUrl,
+  url,
+  sameAs: [
+    "https://soundcloud.com/bjornos-933013928"
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Utrecht",
+    addressCountry: "NL"
+  },
+  areaServed: ["Utrecht", "Nederland"],
+  makesOffer: [
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "DJ-boeking (House DJ)",
+        areaServed: ["Utrecht", "Nederland"]
+      },
+      availability: "https://schema.org/InStock"
+    }
+  ]
+};
 ---
 
+<!-- Basic SEO -->
 <title set:html={title} />
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical ?? url} />
@@ -43,37 +81,11 @@ const imageUrl = ogImage.startsWith("http") ? ogImage : new URL(ogImage, site).t
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={imageUrl} />
 
-<!-- Theme color -->
+<!-- Theme -->
 <meta name="theme-color" content="#0a0a0a" />
 
-<!-- JSON-LD: Person / Musician met lokale targeting -->
-<script type="application/ld+json">
-{JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "BJORNOS",
-  jobTitle: "House DJ",
-  description,
-  image: imageUrl,
-  url,
-  sameAs: [
-    "https://soundcloud.com/bjornos-933013928"
-
-  ],
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Utrecht",
-    addressCountry: "NL"
-  },
-  areaServed: ["Utrecht", "Nederland"],
-  makesOffer: [{
-    "@type": "Offer",
-    itemOffered: {
-      "@type": "Service",
-      name: "DJ-boeking (House DJ)",
-      areaServed: ["Utrecht", "Nederland"]
-    },
-    availability: "https://schema.org/InStock"
-  }]
-})}
-</script>
+<!-- JSON-LD (SAFE) -->
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(schema)}
+/>
