@@ -7,6 +7,20 @@ import { analytics as analyticsCfg } from "../config/site";
 
 // Entry voor animaties (TS → JS bundel)
 import revealEntry from "../scripts/reveal.entry.ts?url";
+
+type LayoutProps = {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonical?: string;
+};
+
+const {
+  title = "BJORNOS - House DJ",
+  description = "Ik breng energie en flow naar elke set. Professionele House DJ voor clubs en festivals.",
+  ogImage = "/og.svg",
+  canonical
+} = Astro.props as LayoutProps;
 ---
 
 <html lang="nl" class="dark">
@@ -16,15 +30,19 @@ import revealEntry from "../scripts/reveal.entry.ts?url";
 
     <!-- SEO -->
     <SEO
-      title={Astro.props.title ?? "BJORNOS — House DJ"}
-      description={Astro.props.description ?? "Ik breng energie en flow naar elke set. Professionele House DJ voor clubs en festivals."}
-      ogImage={Astro.props.ogImage ?? "/og.svg"}
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      canonical={canonical}
     />
 
     <!-- Google Analytics 4 -->
     {analyticsCfg.gaMeasurementId && (
       <>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsCfg.gaMeasurementId}`}></script>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${analyticsCfg.gaMeasurementId}`}
+        ></script>
 
         <script is:inline define:vars={{ gaId: analyticsCfg.gaMeasurementId }}>
           window.dataLayer = window.dataLayer || [];

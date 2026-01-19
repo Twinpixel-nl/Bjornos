@@ -1,9 +1,4 @@
 ---
-/**
- * SEO component
- * Props:
- * - title, description, ogImage, canonical (optioneel)
- */
 export interface Props {
   title?: string;
   description?: string;
@@ -20,72 +15,77 @@ const {
 
 const site = Astro.site ?? new URL(Astro.request.url).origin;
 const url = new URL(Astro.request.url, site).toString();
+const canonicalUrl = canonical ?? url;
+
 const imageUrl = ogImage.startsWith("http")
   ? ogImage
   : new URL(ogImage, site).toString();
 
-/**
- * JSON-LD schema
- * Altijd als object + JSON.stringify + set:html
- * om parse errors te voorkomen
- */
-const schema = {
+// stabiele ids voor schema linking
+const websiteId = `${site}/#website`;
+const personId = `${site}/#person`;
+
+const schemaGraph = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "BJORNOS",
-  jobTitle: "House DJ",
-  description,
-  image: imageUrl,
-  url,
-  sameAs: [
-    "https://soundcloud.com/bjornos-933013928"
-  ],
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Utrecht",
-    addressCountry: "NL"
-  },
-  areaServed: ["Utrecht", "Nederland"],
-  makesOffer: [
+  "@graph": [
     {
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: "DJ-boeking (House DJ)",
-        areaServed: ["Utrecht", "Nederland"]
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: site,
+      name: "BJORNOS",
+      inLanguage: "nl-NL"
+    },
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: "BJORNOS",
+      jobTitle: "House DJ",
+      description,
+      image: imageUrl,
+      url: site,
+      sameAs: [
+        "https://soundcloud.com/bjornos-933013928"
+      ],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Utrecht",
+        addressCountry: "NL"
       },
-      availability: "https://schema.org/InStock"
+      areaServed: ["Utrecht", "Nederland"],
+      makesOffer: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "DJ-boeking (House DJ)",
+            areaServed: ["Utrecht", "Nederland"]
+          },
+          availability: "https://schema.org/InStock"
+        }
+      ]
     }
   ]
 };
 ---
 
-<!-- Basic SEO -->
-<title set:html={title} />
+<title>{title}</title>
 <meta name="description" content={description} />
-<link rel="canonical" href={canonical ?? url} />
+<link rel="canonical" href={canonicalUrl} />
 
-<!-- Open Graph -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="BJORNOS" />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:url" content={url} />
+<meta property="og:url" content={canonicalUrl} />
 <meta property="og:image" content={imageUrl} />
 <meta property="og:image:alt" content="BJORNOS - House DJ" />
 <meta property="og:locale" content="nl_NL" />
 
-<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={imageUrl} />
 
-<!-- Theme -->
 <meta name="theme-color" content="#0a0a0a" />
 
-<!-- JSON-LD (SAFE) -->
-<script
-  type="application/ld+json"
-  set:html={JSON.stringify(schema)}
-/>
+<script type="application/ld+json" set:html={JSON.stringify(schemaGraph)} />
