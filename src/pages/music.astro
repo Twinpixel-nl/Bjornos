@@ -34,21 +34,25 @@ const scPlayerSrc =
           ></iframe>
         </div>
 
-        {mixcloudEmbed && (
-          <>
-            <h3 class="mt-10 text-white text-lg">Meer sets op Mixcloud</h3>
-            <div class="mt-4 overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-lg" aria-label="Mixcloud player">
-              <iframe
-                src={mixcloudEmbed}
-                width="100%"
-                height="120"
-                allow="encrypted-media; fullscreen; autoplay"
-                loading="lazy"
-              ></iframe>
-            </div>
-          </>
-        )}
+       {mixcloudEmbed && (
+      <div class="md:col-span-12 mt-6" data-reveal>
+        <h3 class="text-white text-lg mb-4">Meer sets op Mixcloud</h3>
+
+        <div
+          class="overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-lg"
+          aria-label="Mixcloud player"
+        >
+          <iframe
+            src={mixcloudEmbed}
+            width="100%"
+            height="120"
+            allow="encrypted-media; fullscreen; autoplay"
+            loading="lazy"
+          ></iframe>
+        </div>
       </div>
+    )}
+  </div>
 
       <!-- RIGHT: Spotify -->
       <div class="md:col-span-5" data-reveal data-delay="0.1">
